@@ -1,0 +1,32 @@
+'''
+Need to remove those you aree not using in the # CONFIG SETTINGS #
+'''
+
+import configparser
+
+## EDIT THESE SETTINGS ##
+
+CONFIG_FILE = "xxxx\\config.ini" # Change xxxx with your own value
+
+##/EDIT THESE SETTINGS ##
+
+## CONFIG SETTINGS ##
+config = configparser.ConfigParser()
+try:
+    config.read(CONFIG_FILE)
+    print('Config file readed')
+    if not PLEX_TOKEN:
+        PLEX_TOKEN = config.get('plex_settings', 'token')
+        print('INFO: [kill_time] Using Plex TOKEN - %s' % PLEX_TOKEN)
+    if not PLEX_URL:
+        PLEX_URL = config.get('plex_settings', 'url')
+        print('INFO: [kill_time] Using Plex URL - %s' % PLEX_URL)
+    if not TAUTULLI_APIKEY:
+        TAUTULLI_APIKEY = config.get('tautulli_settings', 'apikey')
+        print('INFO: [kill_time] Using Tautulli API key - %s' % TAUTULLI_APIKEY)
+    if not TAUTULLI_URL:
+        TAUTULLI_URL = config.get('tautulli_settings', 'url')
+        print('INFO: [kill_time] Using Tautulli URL - %s' % TAUTULLI_URL)
+except configparser.NoSectionError:
+    sys.exit('ERROR: [kill_time] No config and missing var values.')
+## /CONFIG SETTINGS ##
